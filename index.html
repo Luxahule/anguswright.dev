@@ -1,122 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Welcome to Angus Wright .dev</title>
-    <link id="dynamic-favicon" rel="icon" type="image/png" href="" />
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 100%;
-        background-color: #f4f4f9;
-        font-family: Arial, sans-serif;
-      }
-      .container {
-        position: absolute;
-        text-align: center;
-        background-color: #fff;
-        padding: 50px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      h1 {
-        color: #333;
-        font-size: 2.5em;
-      }
-      p {
-        color: #666;
-        font-size: 1.2em;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container" id="bouncer">
-      <h1>Welcome to Angus Wright .dev</h1>
-      <p>Construction underway...</p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angus Wright | Freelance Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --text: #1a1a1a;
+      --accent: #0057ff;
+      --border: #ddd;
+    }
 
-    <script>
-      const container = document.getElementById('bouncer');
-      const favicon = document.getElementById('dynamic-favicon');
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      let posX = 100;
-      let posY = 100;
-      let velocityX = 2;
-      let velocityY = 2;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-      function getRandomColor() {
-        const r = Math.floor(Math.random() * 156) + 100;
-        const g = Math.floor(Math.random() * 156) + 100;
-        const b = Math.floor(Math.random() * 156) + 100;
-        return `rgb(${r}, ${g}, ${b})`;
-      }
+    header {
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
 
-      function updateFavicon(bgColor) {
-        const size = 64;
-        const canvas = document.createElement('canvas');
-        canvas.width = size;
-        canvas.height = size;
-        const ctx = canvas.getContext('2d');
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
 
-        // Draw circle
-        ctx.fillStyle = bgColor;
-        ctx.beginPath();
-        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-        ctx.fill();
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-top: 0.5rem;
+    }
 
-        // Draw "AW" text
-        ctx.font = 'bold 24px Arial';
-        ctx.fillStyle = '#000'; // Text color
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('AW', size / 2, size / 2);
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
 
-        // Update favicon
-        favicon.href = canvas.toDataURL('image/png');
-      }
+    section {
+      margin-bottom: 3rem;
+    }
 
-      function animate() {
-        const rect = container.getBoundingClientRect();
-        const maxX = window.innerWidth - rect.width;
-        const maxY = window.innerHeight - rect.height;
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.5rem;
+      font-weight: 600;
+    }
 
-        posX += velocityX;
-        posY += velocityY;
+    ul {
+      list-style: none;
+    }
 
-        let bounced = false;
+    li {
+      margin-bottom: 0.7rem;
+      padding-left: 1rem;
+      border-left: 2px solid #ccc;
+    }
 
-        if (posX <= 0 || posX >= maxX) {
-          velocityX *= -1;
-          bounced = true;
-        }
+    p {
+      max-width: 700px;
+    }
 
-        if (posY <= 0 || posY >= maxY) {
-          velocityY *= -1;
-          bounced = true;
-        }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-        if (bounced) {
-          const newColor = getRandomColor();
-          container.style.backgroundColor = newColor;
-          updateFavicon(newColor);
-        }
+    a:hover {
+      color: #003ecb;
+    }
 
-        container.style.left = posX + 'px';
-        container.style.top = posY + 'px';
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+      border-top: 1px solid var(--border);
+      padding: 2rem 1rem;
+    }
 
-        requestAnimationFrame(animate);
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
       }
 
-      // Initial setup
-      const initialColor = '#ffffff';
-      container.style.backgroundColor = initialColor;
-      updateFavicon(initialColor);
+      header p {
+        font-size: 1rem;
+      }
 
-      animate();
-    </script>
-  </body>
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Angus Wright</h1>
+    <p>Freelance Dynamics 365 Developer & Technical Consultant</p>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>About Me</h2>
+      <p>I craft clean and scalable Dynamics 365 solutions that empower businesses. From plugin magic to seamless Power Platform automation — I bridge business needs with technical execution.</p>
+    </section>
+    <section>
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:anguswright.dev@posteo.net">anguswright.dev@posteo.net</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/angusfwright/" target="_blank">linkedin.com/in/angusfwright/</a></p>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Angus Wright — Freelance CRM Developer
+  </footer>
+
+</body>
 </html>
